@@ -1,0 +1,98 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Poppins", sans-serif;
+}
+
+body {
+  height: 100vh;
+  background: linear-gradient(rgba(0, 60, 0, 0.6), rgba(0, 60, 0, 0.6)),
+    url('https://images.unsplash.com/photo-1599058917212-d750089bc07f?auto=format&fit=crop&w=1920&q=80');
+  background-size: cover;
+  background-position: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #fff;
+}
+
+.login-container {
+  background: rgba(255, 255, 255, 0.95);
+  width: 450px;
+  padding: 45px 40px;
+  border-radius: 15px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+  text-align: center;
+}
+
+.login-container h1 {
+  color: #2d572c;
+  font-size: 2.2rem;
+  margin-bottom: 10px;
+}
+
+.login-container p {
+  color: #555;
+  margin-bottom: 30px;
+  font-size: 1rem;
+}
+
+.login-container input,
+.login-container select {
+  width: 100%;
+  padding: 14px;
+  margin: 12px 0 20px;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  font-size: 1rem;
+  transition: all 0.3s ease;
+}
+
+.login-container input:focus,
+.login-container select:focus {
+  border-color: #2d572c;
+  outline: none;
+  box-shadow: 0 0 8px rgba(45, 87, 44, 0.3);
+}
+
+.login-container button {
+  width: 100%;
+  padding: 14px;
+  background-color: #2d572c;
+  color: white;
+  border: none;
+  border-radius: 10px;
+  font-size: 1.1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.login-container button:hover {
+  background-color: #3d7a3d;
+  transform: scale(1.03);
+}
+
+.footer-text {
+  font-size: 0.9rem;
+  margin-top: 20px;
+  color: #666;
+}
+
+.footer-text a {
+  text-decoration: none;
+  color: #2d572c;
+  font-weight: 500;
+}
+
+.footer-text a:hover {
+  text-decoration: underline;
+}
+
+@media (max-width: 600px) {
+  .login-container {
+    width: 90%;
+    padding: 35px 25px;
+  }
+}

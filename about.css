@@ -1,0 +1,188 @@
+/* Basic reset */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Poppins", sans-serif;
+}
+
+body {
+  background: linear-gradient(to bottom right, #f5fff5, #e0f7e0);
+  color: #333;
+}
+
+/* Header Section */
+header {
+  background-color: #2d572c;
+  color: #fff;
+  text-align: center;
+  padding: 25px 20px;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+}
+
+.logo img {
+  width: 50px;
+  height: 50px;
+}
+
+header h1 {
+  font-size: 1.8rem;
+  font-weight: 700;
+}
+
+.tagline {
+  font-size: 1rem;
+  margin-top: 6px;
+  color: #e3ffe2;
+}
+
+nav {
+  margin-top: 15px;
+}
+
+nav a {
+  color: #fff;
+  text-decoration: none;
+  margin: 0 15px;
+  font-weight: 600;
+  transition: color 0.3s;
+}
+
+nav a:hover,
+nav a.active {
+  color: #c8ffba;
+}
+
+/* Intro Section */
+.intro {
+  text-align: center;
+  margin: 40px auto;
+  max-width: 800px;
+}
+
+.intro h2 {
+  color: #2d572c;
+  margin-bottom: 15px;
+}
+
+.intro p {
+  line-height: 1.6;
+  color: #444;
+  font-size: 1.1rem;
+}
+
+/* Mission */
+.mission {
+  background-color: #e9f9e9;
+  padding: 40px 20px;
+  text-align: center;
+}
+
+.mission h3 {
+  color: #2d572c;
+  margin-bottom: 15px;
+}
+
+.mission p {
+  max-width: 800px;
+  margin: 0 auto;
+  line-height: 1.6;
+}
+
+/* Developer Section */
+.developers {
+  padding: 50px 20px;
+  text-align: center;
+}
+
+.developers h3 {
+  color: #2d572c;
+  margin-bottom: 30px;
+}
+
+.dev-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 25px;
+  max-width: 1000px;
+  margin: auto;
+}
+
+.dev-card {
+  background: #fff;
+  border-radius: 15px;
+  padding: 20px;
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
+  transition: transform 0.3s ease;
+}
+
+.dev-card:hover {
+  transform: translateY(-6px);
+}
+
+.dev-card img {
+  width: 100px;
+  height: 100px;
+  object-fit: cover;
+  margin-bottom: 15px;
+  border-radius: 50%;
+}
+
+.dev-card h4 {
+  color: #2d572c;
+  margin-bottom: 8px;
+}
+
+.dev-card p {
+  font-size: 0.95rem;
+  color: #555;
+  margin-bottom: 10px;
+}
+
+/* Contact */
+.contact {
+  background-color: #f1fdf1;
+  text-align: center;
+  padding: 40px 20px;
+}
+
+.contact a {
+  color: #2d572c;
+  text-decoration: none;
+  font-weight: 600;
+}
+
+.contact a:hover {
+  text-decoration: underline;
+}
+
+/* Footer */
+footer {
+  background-color: #2d572c;
+  color: #fff;
+  text-align: center;
+  padding: 15px;
+  font-size: 0.9rem;
+  margin-top: 40px;
+}
+
+/* Responsive Design */
+@media (max-width: 600px) {
+  header h1 {
+    font-size: 1.5rem;
+  }
+
+  .tagline {
+    font-size: 0.9rem;
+  }
+
+  .intro p, .mission p {
+    padding: 0 10px;
+  }
+}

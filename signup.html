@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Farm Care | Sign Up</title>
+  <link rel="stylesheet" href="signup.css" />
+</head>
+<body>
+  <div class="signup-container">
+    <h1>Join Farm Care 🌱</h1>
+    <p>Create your account and start connecting!</p>
+
+    <form id="signupForm">
+      <input type="text" id="username" placeholder="Enter Username" required />
+      <input type="email" id="email" placeholder="Enter Email" required />
+      <input type="password" id="password" placeholder="Create Password" required />
+
+      <select id="userType" required>
+        <option value="" disabled selected>Sign up as</option>
+        <option value="farmer">Farmer</option>
+        <option value="consumer">Consumer</option>
+      </select>
+
+      <button type="submit">Sign Up</button>
+    </form>
+
+    <p class="footer-text">
+      Already have an account? <a href="login.html">Login</a>
+    </p>
+  </div>
+
+  <script>
+    document.getElementById("signupForm").addEventListener("submit", function(event) {
+      event.preventDefault();
+
+      // Get user inputs
+      const username = document.getElementById("username").value;
+      const userType = document.getElementById("userType").value;
+
+      // Store username and userType in localStorage
+      localStorage.setItem("username", username);
+      localStorage.setItem("userType", userType);
+
+      // Redirect to home
+      window.location.href = "home.html";
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,154 @@
+/* General Reset */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Poppins", sans-serif;
+}
+
+body {
+  background-color: #f9fff9;
+  color: #2d572c;
+}
+
+/* Header */
+header {
+  background: #fff;
+  text-align: center;
+  padding: 20px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+}
+
+header h1 {
+  font-size: 2rem;
+  color: #2d572c;
+}
+
+header p {
+  font-size: 1rem;
+  color: #4c8a46;
+}
+
+/* Contact Section */
+.contact-section {
+  padding: 40px;
+  max-width: 1100px;
+  margin: auto;
+}
+
+.contact-intro {
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+.contact-intro h2 {
+  font-size: 2rem;
+  color: #1c3b1b;
+}
+
+.contact-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 30px;
+  justify-content: space-between;
+}
+
+.contact-form,
+.contact-info {
+  background: #fff;
+  flex: 1 1 45%;
+  padding: 20px;
+  border-radius: 15px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+/* Form Styling */
+.contact-form h3 {
+  margin-bottom: 15px;
+  color: #2d572c;
+}
+
+.contact-form label {
+  display: block;
+  margin-top: 10px;
+  font-weight: 500;
+}
+
+.contact-form input,
+.contact-form textarea {
+  width: 100%;
+  padding: 10px;
+  margin-top: 5px;
+  border: 1px solid #cce0cc;
+  border-radius: 8px;
+  outline: none;
+}
+
+.contact-form button {
+  margin-top: 15px;
+  background: #2d572c;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 1rem;
+  transition: 0.3s;
+}
+
+.contact-form button:hover {
+  background: #3f8c3b;
+}
+
+/* Contact Info */
+.contact-info h3, 
+.contact-info h4 {
+  color: #2d572c;
+}
+
+.contact-info p {
+  margin: 10px 0;
+  font-size: 1rem;
+}
+
+/* Social Media Icons */
+.social-icons {
+  margin-top: 15px;
+}
+
+.social-icons a img {
+  width: 45px;
+  height: 45px;
+  margin: 0 10px;
+  transition: transform 0.3s, box-shadow 0.3s;
+  border-radius: 50%;
+}
+
+.social-icons a img:hover {
+  transform: scale(1.2);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+}
+
+/* Map */
+.map-container {
+  margin-top: 40px;
+  text-align: center;
+}
+
+.map-container h3 {
+  margin-bottom: 15px;
+}
+
+/* Footer */
+footer {
+  background: #2d572c;
+  color: white;
+  text-align: center;
+  padding: 15px;
+  margin-top: 30px;
+  border-radius: 10px 10px 0 0;
+}
+
+footer p {
+  font-size: 0.9rem;
+}

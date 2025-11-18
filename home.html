@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Farm Care - Home</title>
+  <link rel="stylesheet" href="home.css">
+</head>
+<body>
+  <header>
+    <h1>🌾 Farm Care</h1>
+    <nav>
+      <a href="home.html" class="active">Home</a>
+      <a href="about.html">About</a>
+      <a href="contact.html">Contact</a>
+      <a href="#" id="logout-btn">Logout</a>
+    </nav>
+  </header>
+
+  <section class="home-section">
+    <div id="welcome-message"></div>
+    <button id="action-button"></button>
+  </section>
+
+  <script>
+    // Retrieve stored user type from login/signup
+    const userType = localStorage.getItem("userType");
+    const welcomeMessage = document.getElementById("welcome-message");
+    const actionButton = document.getElementById("action-button");
+
+    if (userType === "farmer") {
+      welcomeMessage.innerHTML = `
+        <h2>Welcome back, Farmer! 👨‍🌾</h2>
+        <p>Ready to share your farm’s freshest fruits and vegetables?</p>
+      `;
+      actionButton.textContent = "Add Produce";
+      actionButton.onclick = () => window.location.href = "farmers.html";
+    } 
+    else if (userType === "consumer") {
+      welcomeMessage.innerHTML = `
+        <h2>Welcome back, Shopper! 🛒</h2>
+        <p>Let’s shop fresh produce directly from farmers.<br>Happy Shopping! 😊</p>
+      `;
+      actionButton.textContent = "Start Shopping";
+      actionButton.onclick = () => window.location.href = "consumer.html";
+    } 
+    else {
+      welcomeMessage.innerHTML = `
+        <h2>Welcome to Farm Care 🌿</h2>
+        <p>Please log in to continue your journey.</p>
+      `;
+      actionButton.textContent = "Login";
+      actionButton.onclick = () => window.location.href = "login.html";
+    }
+
+    // Logout functionality
+    document.getElementById("logout-btn").onclick = () => {
+      localStorage.removeItem("userType");
+      window.location.href = "login.html";
+    };
+  </script>
+</body>
+</html>

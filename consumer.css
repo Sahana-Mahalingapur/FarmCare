@@ -1,0 +1,129 @@
+/* General Page Styling */
+body {
+  font-family: 'Poppins', sans-serif;
+  margin: 0;
+  background: #ffffff; /* White background */
+  color: #2d572c; /* Deep green text */
+}
+
+/* Header */
+header {
+  background-color: #2d572c;
+  color: white;
+  text-align: center;
+  padding: 25px 0;
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.1);
+}
+
+header h1 {
+  margin: 0;
+  font-size: 2rem;
+  letter-spacing: 1px;
+}
+
+/* Search Bar */
+.search-bar {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 15px;
+  gap: 10px;
+}
+
+.search-bar input {
+  width: 50%;
+  padding: 10px 15px;
+  border-radius: 25px;
+  border: 2px solid #2d572c;
+  outline: none;
+  font-size: 1rem;
+  color: #2d572c;
+  transition: 0.3s;
+}
+
+.search-bar input:focus {
+  border-color: #2d572c;
+  box-shadow: 0 0 6px rgba(45, 87, 44, 0.4);
+}
+
+.search-bar button {
+  background-color: white;
+  border: 2px solid #2d572c;
+  border-radius: 50%;
+  padding: 10px;
+  font-size: 1.2rem;
+  cursor: pointer;
+  color: #2d572c;
+  transition: 0.3s;
+}
+
+.search-bar button:hover {
+  background-color: #2d572c;
+  color: white;
+}
+
+/* Section Titles */
+h2 {
+  color: #2d572c;
+  text-align: center;
+  margin-top: 40px;
+  margin-bottom: 15px;
+  font-size: 1.8rem;
+  border-bottom: 3px solid #2d572c;
+  display: inline-block;
+  padding-bottom: 5px;
+}
+
+/* Product Container */
+.product-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 25px;
+  padding: 20px;
+}
+
+/* Product Card */
+.product-card {
+  background: #ffffff;
+  border-radius: 15px;
+  box-shadow: 0 4px 10px rgba(45, 87, 44, 0.15);
+  width: 200px;
+  text-align: center;
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.product-card img {
+  width: 100%;
+  height: 150px;
+  border-radius: 15px 15px 0 0;
+  object-fit: cover;
+}
+
+.product-card h3 {
+  margin: 10px 0 5px;
+  font-weight: 600;
+}
+
+.product-card p {
+  color: #2d572c;
+  font-weight: bold;
+  margin-bottom: 15px;
+}
+
+/* Hover Effect */
+.product-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 8px 16px rgba(45, 87, 44, 0.25);
+}
+
+/* Footer */
+footer {
+  text-align: center;
+  background: #e8f5e9;
+  padding: 12px 0;
+  margin-top: 50px;
+  font-size: 15px;
+  color: #2d572c;
+  border-top: 2px solid #2d572c;
+}

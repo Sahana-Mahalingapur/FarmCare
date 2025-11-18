@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Farm Care | Farmer Dashboard</title>
+  <link rel="stylesheet" href="farmers.css" />
+</head>
+<body>
+  <header>
+    <h1>🌿 Farm Care — Farmer Dashboard</h1>
+    <nav>
+      <a href="#">Home</a>
+      <a href="#">My Uploads</a>
+      <a href="#">Logout</a>
+    </nav>
+  </header>
+
+  <main>
+    <section class="upload-section">
+      <h2>Upload Your Fresh Produce</h2>
+      <p>Share your farmers freshest harvest with consumers directly!</p>
+
+      <form id="uploadForm">
+        <label for="produce-name">Produce Name:</label>
+        <input type="text" id="produce-name" placeholder="e.g. Mangoes, Tomatoes" required />
+
+        <label for="harvest-date">Harvest Date:</label>
+        <input type="date" id="harvest-date" required />
+
+        <label for="freshness">Freshness Scale (1–10):</label>
+        <div class="freshness-scale">
+          <input 
+            type="range" 
+            id="freshness" 
+            min="1" 
+            max="10" 
+            value="8" 
+            oninput="updateFreshness(this.value)" 
+          />
+          <span id="freshness-value">8 / 10 🌱</span>
+        </div>
+
+        <label for="produce-image">Upload Produce Image:</label>
+        <input type="file" id="produce-image" accept="image/*" required />
+
+        <button type="submit">Upload </button>
+      </form>
+    </section>
+
+    <section class="preview-section">
+      <h3>My Uploaded Produce</h3>
+      <p>Your recently uploaded fruits and vegetables will appear below.</p>
+      <div id="preview-grid" class="preview-grid">
+        <!-- Farmer’s uploaded items will appear here dynamically -->
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <p>© 2025 Farm Care | Empowering Farmers with Technology 🌾</p>
+  </footer>
+
+  <script>
+    // Update freshness value display
+    function updateFreshness(val) {
+      const valueText = document.getElementById("freshness-value");
+      const emojis = ["😐","🙂","😊","😁","😄","😃","😋","🥰","🌿","💚"];
+      valueText.textContent = `${val} / 10 ${emojis[val - 1]}`;
+
+    }
+
+    // Handle form submission
+    const form = document.getElementById("uploadForm");
+    const previewGrid = document.getElementById("preview-grid");
+
+    form.addEventListener("submit", (e) => {
+      e.preventDefault();
+
+      const name = document.getElementById("produce-name").value;
+      const date = document.getElementById("harvest-date").value;
+      const freshness = document.getElementById("freshness").value;
+      const file = document.getElementById("produce-image").files[0];
+
+      if (!file) return alert("Please upload an image!");
+
+      const reader = new FileReader();
+      reader.onload = function(e) {
+        const imageSrc = e.target.result;
+
+        // Create a new card dynamically
+        const card = document.createElement("div");
+        card.classList.add("card");
+        card.innerHTML = `
+          <img src="${imageSrc}" alt="${name}">
+          <h4>${name}</h4>
+          <p>Harvested: ${date}</p>
+          <p>Freshness: ${freshness}/10 🌿</p>
+        `;
+
+        previewGrid.prepend(card); // Add to top
+        form.reset();
+        document.getElementById("freshness-value").textContent = "8 / 10 🌱";
+      };
+      reader.readAsDataURL(file);
+    });
+  </script>
+</body>
+</html>
