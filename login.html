@@ -1,19 +1,21 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Farm Care | Login</title>
   <link rel="stylesheet" href="login.css" />
 </head>
+
 <body>
   <div class="login-container">
     <h1>Farm Care 🌿</h1>
     <p>Connecting Farmers and Consumers — Freshness You Can Trust</p>
 
     <form id="loginForm">
-      <input type="text" id="username" placeholder="Enter Username" required />
       <input type="email" id="email" placeholder="Enter Email" required />
+
       <input type="password" id="password" placeholder="Enter Password" required />
 
       <select id="userType" required>
@@ -31,20 +33,67 @@
   </div>
 
   <script>
-    document.getElementById("loginForm").addEventListener("submit", function(event) {
-      event.preventDefault(); // prevent form reload
+    document.getElementById("loginForm").addEventListener("submit", async function (event) {
+      event.preventDefault();
 
-      // get form data
-      const username = document.getElementById("username").value;
+      const email = document.getElementById("email").value.trim();
+      const password = document.getElementById("password").value.trim();
       const userType = document.getElementById("userType").value;
 
-      // store values in localStorage
-      localStorage.setItem("username", username);
-      localStorage.setItem("userType", userType);
+      if (!email || !password || !userType) {
+        alert("❌ Please fill in all fields.");
+        return;
+      }
 
-      // redirect to home page
-      window.location.href = "home.html";
+      try {
+        const res = await fetch('http://localhost:5000/api/auth/login', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ email, password, role: userType })
+        });
+
+        const data = await res.json();
+
+        if (data.success) {
+          // 🔒 Security Check: Ensure selected role matches account role
+          if (userType !== data.role) {
+            alert(`⚠️ Access Denied: This account is registered as a "${data.role}". Please change "Login as" to "${data.role}".`);
+            return;
+          }
+
+          // Save token and user info
+          // Save token and user info
+          localStorage.setItem('token', data.token);
+          localStorage.setItem('userType', data.role);
+          localStorage.setItem('username', data.name); // data.name is directly available
+          localStorage.setItem('email', data.email);
+
+          if (data.phone) localStorage.setItem('contact', data.phone);
+
+          const userObj = {
+            name: data.name,
+            email: data.email,
+            role: data.role,
+            _id: data._id
+          };
+          localStorage.setItem('user', JSON.stringify(userObj));
+
+          alert('Login Successful! ✅');
+
+          if (data.role === 'farmer') {
+            window.location.href = 'farmers.html';
+          } else {
+            window.location.href = 'consumer.html';
+          }
+        } else {
+          alert(data.error || 'Login failed. Please check your credentials.');
+        }
+      } catch (err) {
+        console.error(err);
+        alert('❌ Error connecting to server. Is the backend running?');
+      }
     });
   </script>
 </body>
+
 </html>

@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Farm Care | Invoice</title>
+</head>
+
+<body style="
+  font-family:Poppins; 
+  padding:30px; 
+  max-width:700px; 
+  margin:auto; 
+  color:#2d572c;
+">
+
+    <h1 style="text-align:center;">🧾 Farm Care Invoice</h1>
+    <p style="text-align:center;">Thank you for your order! 😊</p>
+    <hr><br>
+
+    <h2>Customer Details</h2>
+    <p><b>Name:</b> <span id="custName"></span></p>
+    <p><b>Email:</b> <span id="custEmail"></span></p>
+    <p><b>Contact:</b> <span id="custPhone"></span></p>
+    <p><b>Order Time:</b> <span id="orderTime"></span></p>
+
+    <hr><br>
+
+    <h2>Order Summary</h2>
+    <table style="width:100%; border-collapse:collapse;">
+        <thead>
+            <tr style="background:#e8f5e9;">
+                <th style="padding:10px; border:1px solid #2d572c;">Item</th>
+                <th style="padding:10px; border:1px solid #2d572c;">Qty</th>
+                <th style="padding:10px; border:1px solid #2d572c;">Unit Price</th>
+                <th style="padding:10px; border:1px solid #2d572c;">Total</th>
+            </tr>
+        </thead>
+        <tbody id="invoiceBody"></tbody>
+    </table>
+
+    <h2 style="text-align:right; margin-top:20px;">
+        Grand Total: ₹<span id="grandTotal"></span>
+    </h2>
+
+    <br>
+    <hr>
+
+    <div style="text-align:center; margin-top:20px;">
+        <button onclick="window.print()" style="
+      background:#2d572c; 
+      color:white; 
+      padding:10px 20px; 
+      border:none; 
+      border-radius:8px;
+      cursor:pointer;
+      font-size:16px;
+    ">Print Invoice 🖨</button>
+
+        <button onclick="window.location.href='consumer.html'" style="
+      background:#888; 
+      color:white; 
+      padding:10px 20px; 
+      border:none; 
+      border-radius:8px;
+      cursor:pointer;
+      font-size:16px;
+      margin-left:10px;
+    ">Back to Home</button>
+    </div>
+
+    <script>
+        // Load order
+        const order = JSON.parse(localStorage.getItem("orderData")) || [];
+        const orderTime = localStorage.getItem("orderTime");
+
+        // Load customer info
+        document.getElementById("custName").innerText = localStorage.getItem("username") || "Not Provided";
+        document.getElementById("custEmail").innerText = localStorage.getItem("email") || "Not Provided";
+        document.getElementById("custPhone").innerText = localStorage.getItem("contact") || "Not Provided";
+        document.getElementById("orderTime").innerText = orderTime;
+
+        // Fill invoice table
+        let grandTotal = 0;
+        const tbody = document.getElementById("invoiceBody");
+
+        order.forEach(item => {
+            grandTotal += item.totalCost;
+
+            tbody.innerHTML += `
+        <tr>
+          <td style="padding:10px; border:1px solid #2d572c;">${item.name}</td>
+          <td style="padding:10px; border:1px solid #2d572c;">${item.quantity}</td>
+          <td style="padding:10px; border:1px solid #2d572c;">₹${item.unitPrice}</td>
+          <td style="padding:10px; border:1px solid #2d572c;">₹${item.totalCost}</td>
+        </tr>
+      `;
+        });
+
+        document.getElementById("grandTotal").innerText = grandTotal;
+    </script>
+
+</body>
+
+</html>

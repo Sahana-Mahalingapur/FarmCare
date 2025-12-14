@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Farm Care | Admin Uploads Log</title>
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: #f4f9f4;
+            margin: 0;
+            padding: 20px;
+            color: #2d572c;
+        }
+
+        h1 {
+            text-align: center;
+            color: #2d572c;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+            background: white;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        th,
+        td {
+            padding: 15px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+
+        th {
+            background-color: #2d572c;
+            color: white;
+        }
+
+        tr:hover {
+            background-color: #f1f1f1;
+        }
+
+        img {
+            width: 80px;
+            height: 80px;
+            object-fit: cover;
+            border-radius: 5px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: auto;
+        }
+
+        .back-btn {
+            display: inline-block;
+            margin-bottom: 20px;
+            padding: 10px 20px;
+            background-color: #2d572c;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="container">
+        <a href="home.html" class="back-btn">← Back to Home</a>
+        <h1>📋 Farmer Uploads Log</h1>
+        <p>Track all products uploaded by farmers.</p>
+
+        <table>
+            <thead>
+                <tr>
+                    <th>Image</th>
+                    <th>Product Name</th>
+                    <th>Price</th>
+                    <th>Category</th>
+                    <th>Farmer Name</th>
+                    <th>Farmer Email</th>
+                    <th>Upload Date</th>
+                </tr>
+            </thead>
+            <tbody id="uploadsTableBody">
+                <tr>
+                    <td colspan="7" style="text-align:center;">Loading uploads...</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <script>
+        async function loadUploads() {
+            try {
+                const res = await fetch('http://localhost:5000/api/products');
+                const data = await res.json();
+                const tbody = document.getElementById('uploadsTableBody');
+                tbody.innerHTML = '';
+
+                if (data.success && data.data.length > 0) {
+                    data.data.forEach(product => {
+                        const imgUrl = product.image.startsWith('http') || product.image.startsWith('/')
+                            ? product.image
+                            : '/uploads/' + product.image;
+
+                        const farmerName = product.farmer ? product.farmer.name : 'Unknown';
+                        const farmerEmail = product.farmer ? product.farmer.email : 'N/A';
+
+                        const row = `
+                            <tr>
+                                <td><img src="${imgUrl}" alt="${product.name}" onerror="this.src='https://via.placeholder.com/80'"></td>
+                                <td>${product.name}</td>
+                                <td>₹${product.price}</td>
+                                <td>${product.category}</td>
+                                <td><strong>${farmerName}</strong></td>
+                                <td>${farmerEmail}</td>
+                                <td>${new Date(product.createdAt).toLocaleDateString()}</td>
+                            </tr>
+                        `;
+                        tbody.innerHTML += row;
+                    });
+                } else {
+                    tbody.innerHTML = '<tr><td colspan="7" style="text-align:center;">No uploads found.</td></tr>';
+                }
+            } catch (err) {
+                console.error(err);
+                document.getElementById('uploadsTableBody').innerHTML = '<tr><td colspan="7" style="text-align:center; color:red;">Error loading data. Ensure backend is running.</td></tr>';
+            }
+        }
+
+        loadUploads();
+    </script>
+
+</body>
+
+</html>
